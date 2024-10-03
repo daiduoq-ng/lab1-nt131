@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itClock"
+        android:title="Clock"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/clock"/>
+
+    <item
+        android:id="@+id/itAlarm"
+        android:title="Alarm"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/alarm_clock"/>
+
+    <item
+        android:id="@+id/itTimer"
+        android:title="Timer"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/clock_timer"/>
+
+</menu>
