@@ -20,17 +20,20 @@
         android:elevation="10dp"
         android:translationZ="10dp"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_height="wrap_content">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:backgroundTint="@color/white"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            app:itemIconSize="24dp"
             app:itemIconTint="@color/color_item_bottom_nav"
             app:itemTextColor="@color/color_item_bottom_nav"
+            app:labelVisibilityMode="labeled"
+            app:itemPaddingBottom="0dp"
+            app:itemPaddingTop="16dp"
             app:menu="@menu/menu_bottom_nav" />
 
     </androidx.cardview.widget.CardView>
