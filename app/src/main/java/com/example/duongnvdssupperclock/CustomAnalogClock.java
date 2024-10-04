@@ -31,11 +31,11 @@ public class CustomAnalogClock extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        float margin = 60f; // Tăng khoảng cách để vạch ngoài dài hơn
+        float margin = 60f; // Giữ nguyên khoảng cách để vạch ngoài dài hơn
         centerX = w / 2f;
         centerY = h / 2f;
-        // Tăng kích thước vòng tròn lên 1.5 lần
-        radius = Math.min(w, h) / 2f - margin; // Thu nhỏ margin nhưng tăng radius để đồng hồ to hơn
+        // Giảm kích thước vòng tròn để đồng hồ nhỏ lại
+        radius = Math.min(w, h) / 2f - margin - 40; // Giảm radius thêm 40
         rectF.set(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
     }
 
@@ -43,13 +43,13 @@ public class CustomAnalogClock extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // Vẽ vòng tròn đồng hồ lớn hơn với màu #ffffff
+        // Vẽ vòng tròn đồng hồ lớn hơn với màu #ffffff và thêm bóng đổ
         paint.setColor(Color.parseColor("#ffffff"));
-        paint.setShadowLayer(8f, 0, 4, Color.argb(128, 0, 0, 0));
+        paint.setShadowLayer(50f, 0, 0, Color.argb(100, 0, 0, 0)); // Tăng độ mờ và lan ra ngoài nhiều hơn
         canvas.drawCircle(centerX, centerY, radius, paint);
 
+        // Vẽ lại bóng đổ để xóa bóng cho các vạch phút
         paint.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
-
 
         // Vẽ các vạch phút bên ngoài vòng tròn, với các vạch 5 phút to hơn và màu khác
         for (int i = 0; i < 60; i++) {
@@ -66,12 +66,12 @@ public class CustomAnalogClock extends View {
                 stopY = (float) (centerY - (radius + 60) * Math.cos(angle));
             } else {
                 // Vạch mỗi phút - ngắn hơn và màu #35446b
-                paint.setColor(Color.parseColor("#ffffff"));
-                paint.setStrokeWidth(3f); // Mỏng hơn
+                paint.setColor(Color.parseColor("#35446b"));
+                paint.setStrokeWidth(4f); // Mỏng hơn
                 startX = (float) (centerX + (radius + 20) * Math.sin(angle)); // Bắt đầu gần hơn
                 startY = (float) (centerY - (radius + 20) * Math.cos(angle));
-                stopX = (float) (centerX + (radius + 40) * Math.sin(angle)); // Ngắn hơn
-                stopY = (float) (centerY - (radius + 40) * Math.cos(angle));
+                stopX = (float) (centerX + (radius + 50) * Math.sin(angle)); // Ngắn hơn
+                stopY = (float) (centerY - (radius + 50) * Math.cos(angle));
             }
 
             // Vẽ vạch phút
@@ -96,7 +96,6 @@ public class CustomAnalogClock extends View {
         // Invalidate để vẽ lại liên tục
         invalidate();
     }
-
 
     private void drawHand(Canvas canvas, float loc, float length, int color, float thickness) {
         float angle = (float) Math.PI * loc / 30 - (float) Math.PI / 2;
