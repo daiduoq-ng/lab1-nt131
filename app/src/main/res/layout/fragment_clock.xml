@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:gravity="center">
 
-
     <com.example.duongnvdssupperclock.CustomAnalogClock
         android:id="@+id/analogClock"
         android:layout_width="350dp"
@@ -19,12 +18,21 @@
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-black"
         android:text="08:27 PM"
-
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#35446b"
         android:textSize="60sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="October 4, 2024"
+        android:textAlignment="center"
+        android:textColor="#35446b"
+        android:textSize="24sp"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -33,6 +41,7 @@
         android:text="HO CHI MINH VIET NAM"
         android:textAlignment="center"
         android:textColor="#32d2bd"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>
