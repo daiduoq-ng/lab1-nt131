@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Add fragments to the list
         fragmentArrayList.add(new FragmentClock());
-        fragmentArrayList.add(new FragmentTimer());
         fragmentArrayList.add(new FragmentAlarm());
+        fragmentArrayList.add(new FragmentTimer());
 
         // Set up the adapter for the ViewPager2
         AdapterViewPager adapterViewPager = new AdapterViewPager(this, fragmentArrayList);

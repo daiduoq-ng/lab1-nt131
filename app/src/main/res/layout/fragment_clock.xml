@@ -10,16 +10,29 @@
         android:id="@+id/analogClock"
         android:layout_width="350dp"
         android:layout_height="350dp"
-        android:layout_marginTop="-90dp"/>
-
+        android:layout_marginTop="-90dp" />
 
     <TextView
         android:id="@+id/digitalClock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
+        android:layout_width="328dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-black"
         android:text="08:27 PM"
-        android:textSize="40sp"
 
-        android:layout_marginTop="50dp"/>
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#35446b"
+        android:textSize="60sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HO CHI MINH VIET NAM"
+        android:textAlignment="center"
+        android:textColor="#32d2bd"
+        android:textSize="20sp" />
+
 </LinearLayout>
