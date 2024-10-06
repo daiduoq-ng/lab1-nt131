@@ -18,9 +18,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.util.ArrayList;
 
 import adapter.AdapterViewPager;
-import fragment.FragmentAlarm;
-import fragment.FragmentClock;
-import fragment.FragmentTimer;
+import com.example.duongnvdssupperclock.fragment.FragmentClock;
+import com.example.duongnvdssupperclock.fragment.FragmentTimer;
+import com.example.duongnvdssupperclock.fragment.FragmentAlarm;
 
 
 public class MainActivity extends AppCompatActivity {

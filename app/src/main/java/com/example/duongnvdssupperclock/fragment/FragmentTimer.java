@@ -1,4 +1,4 @@
-package fragment;
+package com.example.duongnvdssupperclock.fragment;
 
 import android.content.Context;
 import android.media.MediaPlayer;
