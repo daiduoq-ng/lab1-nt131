@@ -161,10 +161,18 @@ public class FragmentTimer extends Fragment {
         new androidx.appcompat.app.AlertDialog.Builder(requireContext())
                 .setTitle("Timer Finished")
                 .setMessage("Your timer has ended.")
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .setPositiveButton("OK", (dialog, which) -> {
+                    if (mediaPlayer != null) {
+                        mediaPlayer.stop(); // Dừng âm thanh
+                        mediaPlayer.release(); // Giải phóng tài nguyên
+                        mediaPlayer = null; // Đặt lại mediaPlayer về null
+                    }
+                    dialog.dismiss();
+                })
                 .setCancelable(false)  // Không cho phép hủy dialog bằng cách nhấn ra ngoài
                 .show();
     }
+
 
     @Override
     public void onDestroyView() {

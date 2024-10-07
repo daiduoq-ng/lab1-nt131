@@ -58,16 +58,30 @@ public class EditAlarm extends AppCompatActivity {
         });
 
         btnOK.setOnClickListener(v -> {
+            // Check if the alarm label is empty
+            String label = alarmEditTxt.getText().toString().trim();
+            if (label.isEmpty()) {
+                alarmEditTxt.setError("Alarm label cannot be empty");
+                return; // Exit the method early
+            }
+
+            // Check if the date is selected
+            if (selectedYear == 0 || selectedMonth == 0 || selectedDay == 0) {
+                datePickerText.setError("Please select a date");
+                return; // Exit the method early
+            }
+
             int hour = timePicker.getHour();
             int minute = timePicker.getMinute();
-            String label = alarmEditTxt.getText().toString();
-            // Create Alarm object with the selected date
-            Alarm newAlarm = new Alarm(0, hour, minute, label, true, selectedYear, selectedMonth, selectedDay);
+            // Create Alarm object with the selected date and a unique ID
+            int uniqueId = (int) System.currentTimeMillis();
+            Alarm newAlarm = new Alarm(uniqueId, hour, minute, label, true, selectedYear, selectedMonth, selectedDay);
 
             Intent resultIntent = new Intent();
             resultIntent.putExtra("NEW_ALARM", newAlarm);
             setResult(RESULT_OK, resultIntent);
             finish();
         });
+
     }
 }

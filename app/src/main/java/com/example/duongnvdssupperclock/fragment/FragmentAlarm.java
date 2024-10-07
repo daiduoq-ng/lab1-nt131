@@ -35,7 +35,7 @@ public class FragmentAlarm extends Fragment {
                         Alarm newAlarm = data.getParcelableExtra("NEW_ALARM");
                         if (newAlarm != null) {
                             Log.d(TAG, "New alarm received: " + newAlarm.getHour() + ":" + newAlarm.getMinute());
-                            alarmViewModel.addAlarm(newAlarm);  // Thêm báo thức vào ViewModel
+                            alarmViewModel.addAlarm(requireContext(), newAlarm);  // Thêm báo thức vào ViewModel và lên lịch
                         } else {
                             Log.e(TAG, "Received null alarm from EditAlarm");
                         }
