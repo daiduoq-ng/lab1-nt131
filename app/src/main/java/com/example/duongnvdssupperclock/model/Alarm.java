@@ -2,24 +2,26 @@ package com.example.duongnvdssupperclock.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "alarms")
 public class Alarm implements Parcelable {
-    @PrimaryKey(autoGenerate = true)
     private int id;
     private int hour;
     private int minute;
     private String label;
-    private boolean isEnabled;
+    private boolean enabled;
+    private int year;   // Năm
+    private int month;  // Tháng
+    private int day;    // Ngày
 
-    public Alarm(int id, int hour, int minute, String label, boolean isEnabled) {
+    public Alarm(int id, int hour, int minute, String label, boolean enabled, int year, int month, int day) {
         this.id = id;
         this.hour = hour;
         this.minute = minute;
         this.label = label;
-        this.isEnabled = isEnabled;
+        this.enabled = enabled;
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
 
     protected Alarm(Parcel in) {
@@ -27,7 +29,10 @@ public class Alarm implements Parcelable {
         hour = in.readInt();
         minute = in.readInt();
         label = in.readString();
-        isEnabled = in.readByte() != 0;
+        enabled = in.readByte() != 0;
+        year = in.readInt();   // Đọc năm từ Parcel
+        month = in.readInt();  // Đọc tháng từ Parcel
+        day = in.readInt();    // Đọc ngày từ Parcel
     }
 
     public static final Creator<Alarm> CREATOR = new Creator<Alarm>() {
@@ -48,7 +53,10 @@ public class Alarm implements Parcelable {
         dest.writeInt(hour);
         dest.writeInt(minute);
         dest.writeString(label);
-        dest.writeByte((byte) (isEnabled ? 1 : 0));
+        dest.writeByte((byte) (enabled ? 1 : 0));
+        dest.writeInt(year);   // Ghi năm vào Parcel
+        dest.writeInt(month);  // Ghi tháng vào Parcel
+        dest.writeInt(day);    // Ghi ngày vào Parcel
     }
 
     @Override
@@ -56,15 +64,44 @@ public class Alarm implements Parcelable {
         return 0;
     }
 
-    // Getters and setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public int getHour() { return hour; }
-    public void setHour(int hour) { this.hour = hour; }
-    public int getMinute() { return minute; }
-    public void setMinute(int minute) { this.minute = minute; }
-    public String getLabel() { return label; }
-    public void setLabel(String label) { this.label = label; }
-    public boolean isEnabled() { return isEnabled; }
-    public void setEnabled(boolean enabled) { isEnabled = enabled; }
+    // Getter methods
+    public int getId() {
+        return id;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public int getYear() {
+        return year;   // Getter cho năm
+    }
+
+    public int getMonth() {
+        return month;  // Getter cho tháng
+    }
+
+    public int getDay() {
+        return day;    // Getter cho ngày
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    public String getFormattedDate() {
+        return String.format("%02d/%02d/%04d", day, month + 1, year); // month + 1 because months are zero-based
+    }
+
 }

@@ -10,5 +10,8 @@
     <color name="greenDark">#3a693a</color>
     <color name="greenLight">#bbf0b5</color>
     <color name="error">#ba1a1a</color>
-
+    <!-- Màu cho mặt trời -->
+    <color name="sun_color">#FF9800</color>
+    <!-- Màu cho mặt trăng -->
+    <color name="moon_color">#757575</color>
 </resources>

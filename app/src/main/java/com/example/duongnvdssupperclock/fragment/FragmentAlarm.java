@@ -5,27 +5,26 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.util.Log;
 import com.example.duongnvdssupperclock.R;
 import com.example.duongnvdssupperclock.EditAlarm;
 import com.example.duongnvdssupperclock.adapter.AlarmAdapter;
 import com.example.duongnvdssupperclock.model.Alarm;
+import com.example.duongnvdssupperclock.viewmodel.AlarmViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentAlarm extends Fragment {
-
     private static final String TAG = "FragmentAlarm";
-    private RecyclerView recyclerView;
+    private AlarmViewModel alarmViewModel;
     private AlarmAdapter alarmAdapter;
-    private List<Alarm> alarmList;
 
     private final ActivityResultLauncher<Intent> editAlarmLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -36,8 +35,7 @@ public class FragmentAlarm extends Fragment {
                         Alarm newAlarm = data.getParcelableExtra("NEW_ALARM");
                         if (newAlarm != null) {
                             Log.d(TAG, "New alarm received: " + newAlarm.getHour() + ":" + newAlarm.getMinute());
-                            alarmList.add(newAlarm);
-                            alarmAdapter.notifyDataSetChanged();
+                            alarmViewModel.addAlarm(newAlarm);  // Thêm báo thức vào ViewModel
                         } else {
                             Log.e(TAG, "Received null alarm from EditAlarm");
                         }
@@ -61,7 +59,7 @@ public class FragmentAlarm extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alarmList = new ArrayList<>();
+        alarmViewModel = new ViewModelProvider(this).get(AlarmViewModel.class);  // Tạo ViewModel
     }
 
     @Override
@@ -69,11 +67,15 @@ public class FragmentAlarm extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_alarm, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        alarmAdapter = new AlarmAdapter(alarmList);
+        alarmAdapter = new AlarmAdapter(new ArrayList<>());
         recyclerView.setAdapter(alarmAdapter);
+
+        // Quan sát thay đổi dữ liệu từ ViewModel và cập nhật RecyclerView
+        alarmViewModel.getAlarmListLiveData().observe(getViewLifecycleOwner(), alarms -> {
+            alarmAdapter.setAlarmList(alarms);  // Cập nhật danh sách báo thức trong adapter
+        });
 
         FloatingActionButton floatingBtn = view.findViewById(R.id.floatingBtn);
         floatingBtn.setOnClickListener(v -> {

@@ -22,7 +22,6 @@ import com.example.duongnvdssupperclock.fragment.FragmentClock;
 import com.example.duongnvdssupperclock.fragment.FragmentTimer;
 import com.example.duongnvdssupperclock.fragment.FragmentAlarm;
 
-
 public class MainActivity extends AppCompatActivity {
     ViewPager2 pagerMain;
     ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // Handle BottomNavigationView item selections
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
