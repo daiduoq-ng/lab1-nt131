@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@drawable/bg_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditAlarm">
+
+    <TextView
+        android:id="@+id/edittxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Select Alarm"
+        android:fontFamily="@font/mulish_regular"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="50dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edittxt"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/timeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish_regular"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/linearAlarm"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="40dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/timePicker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="150dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/alarmEditTxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Alarm Label"
+            android:fontFamily="@font/mulish_regular"
+            android:layout_margin="10dp"
+            android:textColor="@color/greenDark"/> <!-- Set text color -->
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Ringtone wrapped in TextInputLayout for consistent styling -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ringtoneInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/editLabel"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ringtoneText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ringtone"
+            android:fontFamily="@font/mulish_regular"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_margin="10dp"
+            android:text="Playing God"
+        android:textColor="@color/greenDark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Date Picker wrapped in TextInputLayout for consistent styling -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/editLabel"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/datePickerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Date"
+            android:fontFamily="@font/mulish_regular"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/greenDark" /> <!-- Set text color -->
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/error"
+        android:layout_margin="20dp"
+        android:text="Cancel"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/greenDark"
+        android:text="OK"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

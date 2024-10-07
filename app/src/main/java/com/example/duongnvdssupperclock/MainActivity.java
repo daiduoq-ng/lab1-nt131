@@ -18,10 +18,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.util.ArrayList;
 
 import adapter.AdapterViewPager;
-import fragment.FragmentAlarm;
-import fragment.FragmentClock;
-import fragment.FragmentTimer;
-
+import com.example.duongnvdssupperclock.fragment.FragmentClock;
+import com.example.duongnvdssupperclock.fragment.FragmentTimer;
+import com.example.duongnvdssupperclock.fragment.FragmentAlarm;
 
 public class MainActivity extends AppCompatActivity {
     ViewPager2 pagerMain;
@@ -47,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Add fragments to the list
         fragmentArrayList.add(new FragmentClock());
-        fragmentArrayList.add(new FragmentTimer());
         fragmentArrayList.add(new FragmentAlarm());
+        fragmentArrayList.add(new FragmentTimer());
 
         // Set up the adapter for the ViewPager2
         AdapterViewPager adapterViewPager = new AdapterViewPager(this, fragmentArrayList);
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // Handle BottomNavigationView item selections
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

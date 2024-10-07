@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+    <!-- Updated timepicker style with new text color -->
+    <style name="timepicker">
+        <item name="android:textColorSecondary">@color/semi_transparent_charcoal</item>
+        <item name="android:textColorPrimary">#35446b</item>
+        <item name="android:textColor">#35446b</item> <!-- Changed text color to #35446b -->
+        <item name="android:textSize">24sp</item>
+    </style>
+
+
+
+
+
+
+
+
+
+</resources>

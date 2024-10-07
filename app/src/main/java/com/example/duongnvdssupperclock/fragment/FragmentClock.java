@@ -1,4 +1,4 @@
-package fragment;
+package com.example.duongnvdssupperclock.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -16,17 +16,17 @@ import com.example.duongnvdssupperclock.R;
 
 public class FragmentClock extends Fragment {
     private TextView digitalClock;
-    private Handler handler = new Handler(); // Handler để cập nhật thời gian
+    private TextView dateView; // Thêm TextView cho ngày
+    private Handler handler = new Handler();
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            updateTime(); // Cập nhật thời gian
-            handler.postDelayed(this, 1000); // Cập nhật mỗi giây
+            updateDateTime(); // Đổi tên thành updateDateTime
+            handler.postDelayed(this, 1000);
         }
     };
 
     public FragmentClock() {
-
     }
 
     public static FragmentClock newInstance() {
@@ -37,8 +37,9 @@ public class FragmentClock extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_clock, container, false);
-        digitalClock = view.findViewById(R.id.digitalClock); // Khởi tạo TextView từ View đã inflate
-        updateTime();
+        digitalClock = view.findViewById(R.id.digitalClock);
+        dateView = view.findViewById(R.id.dateView); // Khởi tạo TextView cho ngày
+        updateDateTime(); // Đổi tên thành updateDateTime
 
         handler.post(runnable);
 
@@ -51,13 +52,18 @@ public class FragmentClock extends Fragment {
         handler.removeCallbacks(runnable);
     }
 
-    private void updateTime() {
-
+    private void updateDateTime() {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-        String currentTime = sdf.format(calendar.getTime());
 
+        // Format cho thời gian
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        String currentTime = timeFormat.format(calendar.getTime());
+
+        // Format cho ngày
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.getDefault());
+        String currentDate = dateFormat.format(calendar.getTime());
 
         digitalClock.setText(currentTime);
+        dateView.setText(currentDate);
     }
 }
